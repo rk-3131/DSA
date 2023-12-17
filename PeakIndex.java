@@ -6,7 +6,7 @@ public class PeakIndex {
         //    here we have been given the array which is mountain array
     //    i.e one part of the array is increasing and the other one is decreasing
 
-        int[] arr = {1, 3, 5, 9, 12, 10, 6, 4, 2, 0};
+        int[] arr = {5,1,3};
         int peakIndex = findPeak(arr);
         System.out.println(peakIndex);
     }
