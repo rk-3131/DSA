@@ -4,11 +4,183 @@ import java.util.Map;
 
 public class MathsForDSA {
     public static void main(String[] args) {
-        System.out.println(convertEvenBitToZero(10));
+        System.out.println(findSetBits(7));
+    }
+
+    static int findSetBits(int n){
+        int ans = 0;
+        while (n > 0){
+            if ((n & 1) == 1){
+                ans++;
+            }
+            n = n >> 1;
+        }
+
+        return ans;
+    }
+
+    static int aRaisedTob(int a, int b){
+//        finding the power of a number is quite simple if we use the concept of bits
+
+        int ans = 1;
+        int base = a;
+        int power = b;
+
+        while (power > 0){
+            if ((power & 1) == 1){
+                ans *= base;
+            }
+            base *= base;
+            power = power >> 1;
+        }
+        return ans;
+    }
+
+    static boolean isPowerOf2(int n){
+        int i = 1;
+
+        while (i < n){
+            i = i << 1;
+        }
+        return i == n;
+    }
+
+    static int sumInithRowOfPascalTriangle(int row){
+        return 1 << (row - 1);
+    }
+
+    static String binaryRepresentation(int n){
+        StringBuilder sb = new StringBuilder();
+
+        while (n > 0){
+            int temp = n % 2;
+            n /= 2;
+            sb.append(Integer.toString(temp));
+        }
+        return sb.reverse().toString();
+    }
+
+    static int countDigitsInOther(int n, int k){
+        int ans = 0;
+
+        while (n > 0){
+            ans++;
+            n /= k;
+        }
+
+        return ans;
+    }
+
+    static int countDigitInBinary2(int n){
+        int ans = 0;
+
+        while (n > 0){
+            ans++;
+            n /= 2;
+        }
+
+        return ans;
+    }
+
+    static int countDigitInBinary(int n){
+        int ans = 0;
+
+        while (n > 0){
+            ans++;
+            n = n >> 1;
+        }
+
+        return ans;
+    }
+
+    static int nthMagicNumber(int n){
+//        return the binary number i.e 0 or 1 into power of 5 from the LSB of a given number
+
+        int temp = 1;
+        int ans = 0;
+        int power = 1;
+
+        while (temp <= n){
+            if ((n & temp) == temp){
+                ans +=  (int)Math.pow(5, power);
+            }
+            temp *= 2;
+            power++;
+        }
+
+        return ans;
+    }
+
+    static public int maxScore(String s) {
+//        the string consists of 0 and 1 only
+//        we have to make sure that the number is such that the sum of 0 from left and sum of 1 from right has to be maximum and we have to return that sum
+        int [] arrZero = new int[s.length()];
+        int [] arrOne = new int[s.length()];
+
+        int cntZero = 0;
+        for (int i = 0; i < s.length(); i++){
+            if (s.charAt(i) == '0'){
+                cntZero++;
+            }
+            arrZero[i] = cntZero;
+        }
+
+        int cntOne = 0;
+        for (int i = s.length() - 1; i >= 0; i--){
+            if (s.charAt(i) == '1'){
+                cntOne++;
+            }
+            arrOne[i] = cntOne;
+        }
+
+        int ans = Integer.MIN_VALUE;
+
+        for (int i = 0; i < s.length(); i++){
+            ans = Math.max(ans, arrZero[i] + arrOne[i]);
+        }
+
+        return ans;
+    }
+
+    static int singleNumber3(int[] nums) {
+        int [] arr = new int[32];
+
+        for (int i = 0; i < nums.length; i++){
+            String bString = Integer.toBinaryString(nums[i]);
+
+            int index = 31;
+            for (int j = bString.length() - 1; j >= 0; j--){
+                if (Character.getNumericValue(bString.charAt(j)) == 1){
+                    arr[index] += 1;
+                }
+                index--;
+            }
+        }
+        int ans = 0;
+
+        double power = 0;
+        for (int i = 31; i >= 0; i--){
+            if (arr[i] % 3 != 0){
+                ans += Math.pow(2, power);
+            }
+            power++;
+        }
+        return ans;
     }
 
     static int findCompliment(int n){
+//        Size of the integer in java is something 4 bytes hence we have to make sure that we all the leading values of zero are not inverted to 1
+//        If they get inverted then the value of the number that we might get will not be what we wanted
 
+        int intSize = Integer.SIZE;
+        int zeroCount = Integer.numberOfLeadingZeros(n);
+
+//        Now the actual number of bits will be the bits which are intSize - zeroCount
+//        And only those values need to be changed
+
+        int mask = (1 << intSize - zeroCount) - 1;
+
+        return mask ^ n;
     }
 
     static long convertEvenBitToZero(long n) {
