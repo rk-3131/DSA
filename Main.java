@@ -75,10 +75,24 @@ public class Main {
 //        dl.removeLast();
 //        dl.display();
 
-        LinkedListFromArray la = new LinkedListFromArray();
-        int [] arr = {1,2,3,4,5,6,7,8,9};
-        LinkedListFromArray.Node head = la.getList(arr);
-        la.display();
+//        LinkedListFromArray la = new LinkedListFromArray();
+//        int [] arr = {1,2,3,4,5,6,7,8,9};
+//        LinkedListFromArray.Node head = la.getList(arr);
+//        la.display();
+
+        CustomStack2 cs =new CustomStack2();
+        cs.push(5);
+        cs.push(4);
+        cs.push(3);
+        cs.push(2);
+        cs.push(2);
+        cs.push(2);
+        cs.push(2);
+        cs.push(2);
+        while (cs.getSize() != 0){
+            System.out.print(cs.pop() + " ");
+        }
+
 
     }
 }
