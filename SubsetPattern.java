@@ -5,8 +5,21 @@ import java.util.List;
 
 public class SubsetPattern {
     public static void main(String[] args) {
-        subSequence("", "abc");
-        System.out.println(subSequenceList("", "pqr"));
+        List<String> list = new ArrayList<String>();
+        subSetOfString("abc", "", list);
+        System.out.println(list);
+    }
+    static void subSetOfString(String org, String made, List<String> list){
+        if (org.length() == 0 || org.isEmpty() || org == null){
+            list.add(made);
+            return;
+        }
+
+        subSetOfString(org.substring(1), made, list);
+
+        made += Character.toString(org.charAt(0));
+        subSetOfString(org.substring(1), made, list);
+
     }
     static List<String> subSequenceList(String p, String up){
         if (up.isEmpty()){
@@ -33,16 +46,5 @@ public class SubsetPattern {
         subSequence(p, up.substring(1));
         subSequence(p + ch, up.substring(1));
     }
-    static void subSetOfString(String org, String made, List<String> list){
-        if (org.length() == 0 || org.isEmpty() || org == null){
-            list.add(made);
-            return;
-        }
 
-        subSetOfString(org.substring(1), made, list);
-
-        made += Character.toString(org.charAt(0));
-        subSetOfString(org.substring(1), made, list);
-
-    }
 }
