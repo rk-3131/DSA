@@ -7,12 +7,33 @@ public class BinarySearch {
 //        Binary search is a technique which is used to find the element in the array which is sorted in ascending or descending order
 
         int [] arr = {1,2,3,4,5,6,7,8,9};
-        System.out.println(binarySearchAsc(arr, 8));
-        System.out.println(ordAgnBinarySearch(arr, 8));
-        ArraysPractice1 ap = new ArraysPractice1();
-        ap.nonStaticReverseArray(arr);
-        System.out.println(binarySearchDesc(arr, 8));
-        System.out.println(ordAgnBinarySearch(arr, 8));
+//        System.out.println(binarySearchAsc(arr, 8));
+//        System.out.println(ordAgnBinarySearch(arr, 8));
+//        System.out.println(binarySearchDesc(arr, 8));
+//        System.out.println(ordAgnBinarySearch(arr, 8));
+
+        System.out.println("Normal Binary Search: " + ordAgnBinarySearch(arr, 11));
+        System.out.println("Recursive Binary Search: " + binarySearchRecursion(arr, 11));
+
+    }
+
+    static int binarySearchRecursion(int [] arr, int target){
+        return helper(0, arr.length - 1, arr, target);
+    }
+    static int helper(int start, int end, int [] arr, int target){
+        if (start > end){
+            return -1;
+        }
+        int mid = start + (end - start) / 2;
+
+        if (arr[mid] == target){
+            return mid;
+        }
+        else if (arr[mid] < target){
+            return helper(mid + 1, end, arr, target);
+        }
+
+        return helper(start, mid - 1, arr, target);
 
     }
     static int ordAgnBinarySearch(int [] arr, int target){

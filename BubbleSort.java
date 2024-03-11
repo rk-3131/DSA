@@ -4,11 +4,29 @@ import java.util.Arrays;
 
 public class BubbleSort {
     public static void main(String[] args) {
-//        int [] arr = {5,4,3,2,1};
-        int [] arr = {1,2,3,4,5};
-        System.out.println(Arrays.toString(arr));
+        int [] arr = {5,4,3,2,1};
+        System.out.println("First array before sorting: "+ Arrays.toString(arr));
         bubbleSort(arr);
-        System.out.println(Arrays.toString(arr));
+        System.out.println("First array after the sorting: "+ Arrays.toString(arr));
+
+        int [] arr2 = {100,90,80,70,60,50,40,30,20,10};
+        System.out.println("Second array before sorting: " + Arrays.toString(arr2));
+        myBubbleSort(arr2);
+        System.out.println("Second array after sorting: " + Arrays.toString(arr2));
+    }
+    static void myBubbleSort(int [] arr){
+        for (int i = 0; i < arr.length; i++){
+            boolean flag = true;
+            for (int j = 0; j < arr.length - i - 1; j++){
+                if (arr[j] > arr[j + 1]){
+                    flag = false;
+                    swap(arr, j, j+ 1);
+                }
+            }
+            if (flag){
+                return;
+            }
+        }
     }
     static void bubbleSort(int [] arr){
 //        first just get the outer loop which will iterate over the array and hence it will be helpful to get the every element traversed at least once

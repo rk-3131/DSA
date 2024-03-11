@@ -18,10 +18,6 @@ public class ArrayInto2DArray {
         }
 
         List<List<Integer>> ans = new ArrayList();
-
-
-
-
         while (getCount(map)){
             List<Integer> row = new ArrayList();
             for (int key : map.keySet()){

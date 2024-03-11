@@ -1,8 +1,13 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class RadixSort {
     public static void main(String[] args) {
-
+        int [] arr = {1000,12546,15549,8546,5106};
+        System.out.println("Array before sorting: " + Arrays.toString(arr));
+        radixSort(arr);
+        System.out.println("Array after sorting: " + Arrays.toString(arr));
     }
     static void radixSort(int [] arr){
 //        This is the method which is used to sort the number which are much larger in their values

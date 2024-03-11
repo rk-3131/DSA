@@ -40,11 +40,11 @@ public class BinarySearchTree {
         }
 
         if (node.val < value){
-            node.left = insert(value, node.left);
+            node.right = insert(value, node.right);
         }
 
         if (node.val > value){
-            node.right = insert(value, node.right);
+            node.left = insert(value, node.left);
         }
 
         return node;

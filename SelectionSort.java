@@ -1,14 +1,30 @@
 package com.company;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class SelectionSort {
     public static void main(String[] args) {
         int [] arr = {5,56,54,16,1,2,1,2,5,4,8,5,555,5};
 //        int [] arr = {5,4,3,2,1};
-        System.out.println(Arrays.toString(arr));
+//        System.out.println(Arrays.toString(arr));
+//        selectionSort2(arr);
+//        System.out.println(Arrays.toString(arr));
+        System.out.println("Array before sorting: " + Arrays.toString(arr));
         selectionSort2(arr);
-        System.out.println(Arrays.toString(arr));
+        System.out.println("Array after sorting: " + Arrays.toString(arr));
+    }
+    static void selectionSort3(int [] arr){
+        for (int i = 0; i < arr.length - 1; i++){
+            int minIndex = i;
+
+            for (int j = i + 1; j < arr.length; j++){
+                if (arr[j] < arr[minIndex]){
+                    minIndex = j;
+                }
+            }
+            swap(arr, minIndex, i);
+        }
     }
 //    5 4 3 2 1
     static void selectionSort2(int [] arr){
