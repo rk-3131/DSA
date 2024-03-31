@@ -1,17 +1,134 @@
 package com.company;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class NQTArray {
     public static void main(String[] args) {
-        int [] arr = {9,4,5,6,3,1,7,5,60};
+//        int[] arr = {9, 4, 5, 6, 3, 1, 7, 5, 60, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 100, 60};
+        int [] arr = {5,3,2,1,4};
 //        System.out.println(minNumber(arr));
 //        System.out.println(maxNumber(arr));
 
         System.out.println(Arrays.toString(arr));
-        System.out.println(Arrays.toString(secondSmallestSecondLargest(arr)));
-        System.out.println(Arrays.toString(secondSmallestSecondLargest2(arr)));
+//        System.out.println(Arrays.toString(secondSmallestSecondLargest(arr)));
+//        System.out.println(Arrays.toString(secondSmallestSecondLargest2(arr)));
+//        reverseArray(arr);
+//        System.out.println(Arrays.toString(arr));
+
+//        Map<Integer, Integer> map = countFreq(arr);
+//
+//        for (int k : map.keySet()){
+//            System.out.println(k + " -->> " + map.get(k));
+
+//        selectionSort(arr);
+//        System.out.println(Arrays.toString(arr));
+//        selectionSort2(arr);
+//        System.out.println(Arrays.toString(arr));
+
+//        System.out.println(sumOfElements(arr));
+        rotateByGivenValue(arr, 3);
+        System.out.println(Arrays.toString(arr));
+
     }
+
+    static void rotateByGivenValue(int [] arr, int k){
+//        1 2 3 4 5 6 7 8 9
+        List<Integer> list = new ArrayList<Integer>();
+
+        for (int i = 0; i < arr.length; i++){
+            list.add(arr[i]);
+        }
+        int index = arr.length - 1;
+        int lastIndex = index - k + 1;
+
+        while (index != lastIndex){
+            int number = list.remove(index);
+            list.add(0, number);
+            index--;
+        }
+
+        for (int i = 0; i < list.size(); i++){
+            arr[i] = list.get(i);
+        }
+    }
+
+    static int sumOfElements(int [] arr){
+        int ans = 0;
+
+        for (int i = 0; i < arr.length; i++){
+            ans += arr[i];
+        }
+
+        return ans;
+    }
+
+    static void selectionSort2(int [] arr){
+        for (int i = 0; i < arr.length; i++){
+            int j = 0;
+            int minNumber = Integer.MAX_VALUE;
+            int minIndex = j;
+
+            while (j < arr.length - i){
+                if (arr[j] < minNumber){
+                    minNumber = arr[j];
+                    minIndex = j;
+                }
+                j++;
+            }
+            swap(arr, minIndex, j - 1);
+        }
+    }
+
+    static void selectionSort(int [] arr){
+        for (int i = 0; i < arr.length; i++){
+            int maxNumber = Integer.MIN_VALUE;
+            int maxIndex = i;
+            int j = 0;
+            while (j < arr.length - i){
+                if (arr[j] > maxNumber){
+                    maxNumber = arr[j];
+                    maxIndex = j;
+                }
+                j++;
+            }
+            swap(arr, maxIndex, j - 1);
+        }
+    }
+
+    static void swap(int [] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    static Map<Integer, Integer> countFreq(int [] arr){
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < arr.length; i++){
+            if (map.containsKey(arr[i])){
+                int number = map.get(arr[i]);
+                map.put(arr[i], number + 1);
+            }else{
+                map.put(arr[i], 1);
+            }
+        }
+
+        return map;
+    }
+
+    static void reverseArray(int [] arr){
+        int i = 0;
+        int j = arr.length - 1;
+
+        while (i < j){
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
     static int [] secondSmallestSecondLargest2(int [] arr){
         int [] ans = new int[2];
 
