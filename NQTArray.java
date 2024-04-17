@@ -30,9 +30,28 @@ public class NQTArray {
 //        System.out.println(Arrays.toString(arr));
 
         int [] arr = {1,2,3,4,5,6,7,8,9};
-        System.out.println(Arrays.toString(arr));
-        rotateByGivenValue(arr, 2);
-        System.out.println(Arrays.toString(arr));
+//        System.out.println(Arrays.toString(arr));
+//        rotateByGivenValue(arr, 2);
+//        System.out.println(Arrays.toString(arr));
+    }
+
+
+    static int removeDuplicates(int [] arr){
+//        Here the input array is the array which sorted in the increasing order
+//        We will use the method of using the two pointers methods and hence we can use it to solve the problem
+
+        int i = 0;
+
+        for (int j = 1; j < arr.length; j++){
+//            Every time we see that the numbers are different and hence at that point i will be increamented
+//            After that the number at ith index will be same as that of the j and at the end i + 1 will be the number of unique numbers in the array
+            if (arr[j] != arr[i]){
+                i++;
+                arr[i] = arr[j];
+            }
+        }
+
+        return i + 1;
     }
 
     static void rotateByGivenValue(int [] arr, int k){
